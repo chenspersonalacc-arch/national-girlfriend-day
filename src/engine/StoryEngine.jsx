@@ -6,212 +6,170 @@ import Welcome from "../components/Welcome";
 import Gift from "../scenes/Gift";
 import Envelope from "../scenes/Envelope";
 import Letter from "../scenes/Letter";
-import Flowers from "../scenes/Flowers";
+import Questions from "../scenes/Questions";
 
 
-export default function StoryEngine() {
+export default function StoryEngine(){
 
 
-  const [scene, setScene] = useState(
-    localStorage.getItem("scene") || "login"
-  );
+const [scene,setScene]=useState(
+localStorage.getItem("scene") || "login"
+);
 
 
-  function changeScene(next){
 
-    localStorage.setItem("scene", next);
+function changeScene(next){
 
-    setScene(next);
+localStorage.setItem("scene",next);
 
-  }
+setScene(next);
 
+}
 
-  useEffect(()=>{
 
-    console.log("Scene:", scene);
 
-  },[scene]);
+useEffect(()=>{
 
+console.log("Scene:",scene);
 
+},[scene]);
 
-  switch(scene){
 
 
-    case "login":
+switch(scene){
 
-      return (
 
-        <div className="
-        min-h-screen
-        flex
-        items-center
-        justify-center
-        bg-[#FDECF3]
-        px-6
-        ">
+case "login":
 
-          <Login
+return(
 
-            onSuccess={() =>
-              changeScene("bloom")
-            }
+<div className="
+min-h-screen
+flex
+items-center
+justify-center
+bg-[#FDECF3]
+px-6
+">
 
-          />
+<Login
+onSuccess={()=>changeScene("bloom")}
+/>
 
-        </div>
+</div>
 
-      );
+);
 
 
 
-    case "bloom":
+case "bloom":
 
-      return (
+return(
 
-        <Bloom
+<Bloom
+onFinish={()=>changeScene("welcome")}
+/>
 
-          onFinish={() =>
-            changeScene("welcome")
-          }
+);
 
-        />
 
-      );
 
+case "welcome":
 
+return(
 
-    case "welcome":
+<Welcome
+onFinish={()=>changeScene("gift")}
+/>
 
-      return (
+);
 
-        <Welcome
 
-          onFinish={() =>
-            changeScene("gift")
-          }
 
-        />
+case "gift":
 
-      );
+return(
 
+<Gift
+onYes={()=>changeScene("envelope")}
+/>
 
+);
 
-    case "gift":
 
-      return (
 
-        <Gift
+case "envelope":
 
-          onYes={() =>
-            changeScene("envelope")
-          }
+return(
 
-        />
+<Envelope
+onOpen={()=>changeScene("letter")}
+/>
 
-      );
+);
 
 
 
-    case "envelope":
+case "letter":
 
-      return (
+return(
 
-        <Envelope
+<Letter
+onFinish={()=>changeScene("questions")}
+/>
 
-          onOpen={() =>
-            changeScene("letter")
-          }
+);
 
-        />
 
-      );
 
+case "questions":
 
+return(
 
-    case "letter":
+<Questions
+onFinish={()=>changeScene("flowers")}
+/>
 
-      return (
+);
 
-        <Letter
 
-          onFinish={() =>
-            changeScene("flowers")
-          }
 
-        />
+case "flowers":
 
-      );
+return(
 
+<div className="
+min-h-screen
+flex
+items-center
+justify-center
+bg-[#FDECF3]
+">
 
+Flowers
 
-    case "flowers":
+</div>
 
-      return (
+);
 
-        <Flowers
 
-          onFinish={() =>
-            changeScene("end")
-          }
 
-        />
+default:
 
-      );
+return(
 
+<button
+onClick={()=>changeScene("login")}
+>
 
+Reset
 
-    case "end":
+</button>
 
-      return (
+);
 
-        <div className="
-        min-h-screen
-        flex
-        items-center
-        justify-center
-        bg-[#FAF8F6]
-        ">
 
-          <h1
-
-            className="text-5xl"
-
-            style={{
-              fontFamily:"Dancing Script"
-            }}
-
-          >
-
-            I love you forever ❤️
-
-          </h1>
-
-        </div>
-
-      );
-
-
-
-    default:
-
-      return (
-
-        <button
-
-          onClick={() =>
-            changeScene("login")
-          }
-
-        >
-
-          Reset
-
-        </button>
-
-      );
-
-
-  }
+}
 
 
 }
