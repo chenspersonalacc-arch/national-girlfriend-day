@@ -46,7 +46,7 @@ export default function StoryEngine() {
         flex
         items-center
         justify-center
-        bg-[#FAF8F6]
+        bg-[#FDECF3]
         px-6
         ">
 
