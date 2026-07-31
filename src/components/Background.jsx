@@ -5,7 +5,7 @@ export default function Background() {
     <div className="fixed inset-0 -z-10 overflow-hidden">
 
       {/* Base paper color */}
-      <div className="absolute inset-0 bg-[#F9F6F2]" />
+      <div className="absolute inset-0 bg-[#FDECF3]" />
 
       {/* Warm light */}
       <motion.div
