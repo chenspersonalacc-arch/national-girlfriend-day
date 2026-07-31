@@ -7,35 +7,35 @@ export default function StoryScene({
   onFinish
 }) {
 
-  const [page,setPage] = useState(0);
-  const [showHint,setShowHint] = useState(false);
+  const [page, setPage] = useState(0);
+  const [showHint, setShowHint] = useState(false);
 
 
-  useEffect(()=>{
+  useEffect(() => {
 
     setShowHint(false);
 
-    const timer = setTimeout(()=>{
+    const timer = setTimeout(() => {
 
       setShowHint(true);
 
-    },8000);
+    }, 8000);
 
 
-    return ()=>clearTimeout(timer);
+    return () => clearTimeout(timer);
 
 
-  },[page]);
+  }, [page]);
 
 
 
-  function next(){
+  function next() {
 
-    if(page < cards.length - 1){
+    if (page < cards.length - 1) {
 
       setPage(page + 1);
 
-    }else{
+    } else {
 
       onFinish?.();
 
@@ -44,20 +44,28 @@ export default function StoryScene({
   }
 
 
+
   return (
 
     <div
+
       className="
-      min-h-screen 
-      flex 
-      items-center 
-      justify-center 
-      px-6 
+      min-h-screen
+      flex
+      items-center
+      justify-center
+      px-6
       cursor-pointer
-      bg-gradient-to-br from-rose-50 via-pink-50 to-white
+      bg-gradient-to-br
+      from-pink-100
+      via-pink-50
+      to-rose-100
       "
+
       onClick={next}
+
     >
+
 
       <AnimatePresence mode="wait">
 
@@ -87,26 +95,33 @@ export default function StoryScene({
             duration:0.9
           }}
 
-          className="text-center"
+          className="
+          text-center
+          "
 
         >
 
+
           <h1
+
             className="
-            text-5xl 
-            md:text-7xl 
-            font-semibold 
-            text-neutral-800 
+            text-5xl
+            md:text-7xl
+            font-semibold
+            text-neutral-800
             whitespace-pre-line
             "
+
             style={{
               fontFamily:"Cormorant Garamond"
             }}
+
           >
 
             {cards[page]}
 
           </h1>
+
 
 
 
@@ -126,14 +141,18 @@ export default function StoryScene({
                   y:0
                 }}
 
+                exit={{
+                  opacity:0
+                }}
+
                 transition={{
                   duration:0.8
                 }}
 
                 className="
-                mt-12 
-                text-sm 
-                tracking-widest 
+                mt-12
+                text-sm
+                tracking-widest
                 text-neutral-500
                 "
 
@@ -146,6 +165,7 @@ export default function StoryScene({
             )}
 
           </AnimatePresence>
+
 
 
         </motion.div>
