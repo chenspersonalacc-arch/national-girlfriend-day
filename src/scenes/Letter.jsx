@@ -10,7 +10,6 @@ function RevealParagraph({ text, onFinish }) {
   const words = text.split(" ");
 
 
-
   useEffect(() => {
 
     let index = 0;
@@ -27,12 +26,11 @@ function RevealParagraph({ text, onFinish }) {
 
         clearInterval(timer);
 
-
         setTimeout(() => {
 
           onFinish?.();
 
-        }, 1000);
+        }, 1800);
 
       }
 
@@ -53,8 +51,8 @@ function RevealParagraph({ text, onFinish }) {
     <p
 
       className="
-      text-[22px]
-      leading-[1.9]
+      text-[20px]
+      leading-[2.1]
       text-neutral-700
       text-justify
       first-line:indent-[1in]
@@ -73,17 +71,15 @@ function RevealParagraph({ text, onFinish }) {
           key={index}
 
           initial={{
-            opacity:0,
-            y:8
+            opacity:0
           }}
 
           animate={{
-            opacity:1,
-            y:0
+            opacity:1
           }}
 
           transition={{
-            duration:0.35
+            duration:0.5
           }}
 
         >
@@ -121,9 +117,9 @@ Iloveyouuuuuuuuuuuuuuuuu <3`
 
 
 
-  const [currentParagraph, setCurrentParagraph] = useState(0);
+  const [currentParagraph,setCurrentParagraph] = useState(0);
 
-  const [finished, setFinished] = useState(false);
+  const [finished,setFinished] = useState(false);
 
 
 
@@ -144,17 +140,15 @@ Iloveyouuuuuuuuuuuuuuuuu <3`
       <motion.article
 
         initial={{
-          opacity:0,
-          y:40
+          opacity:0
         }}
 
         animate={{
-          opacity:1,
-          y:0
+          opacity:1
         }}
 
         transition={{
-          duration:1
+          duration:1.5
         }}
 
         className="
@@ -170,7 +164,6 @@ Iloveyouuuuuuuuuuuuuuuuu <3`
         "
 
       >
-
 
 
         <p
@@ -191,7 +184,6 @@ Iloveyouuuuuuuuuuuuuuuuu <3`
           July 31, 2026
 
         </p>
-
 
 
 
@@ -239,7 +231,11 @@ Iloveyouuuuuuuuuuuuuuuuu <3`
 
                   else{
 
-                    setFinished(true);
+                    setTimeout(()=>{
+
+                      setFinished(true);
+
+                    },1500);
 
                   }
 
@@ -257,23 +253,21 @@ Iloveyouuuuuuuuuuuuuuuuu <3`
 
 
 
-
         {finished && (
 
           <motion.div
 
             initial={{
-              opacity:0,
-              y:30
+              opacity:0
             }}
 
             animate={{
-              opacity:1,
-              y:0
+              opacity:1
             }}
 
             transition={{
-              duration:1
+              duration:3,
+              ease:"easeInOut"
             }}
 
             className="
@@ -300,7 +294,6 @@ Iloveyouuuuuuuuuuuuuuuuu <3`
 
             <div className="mt-16">
 
-
               <GlassButton
 
                 onClick={onFinish}
@@ -320,7 +313,6 @@ Iloveyouuuuuuuuuuuuuuuuu <3`
         )}
 
 
-
       </motion.article>
 
 
@@ -328,4 +320,4 @@ Iloveyouuuuuuuuuuuuuuuuu <3`
 
   );
 
-} 
+}
