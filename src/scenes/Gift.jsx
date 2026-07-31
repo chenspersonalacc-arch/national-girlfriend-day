@@ -165,7 +165,7 @@ function GlassChoice({ children, onClick }) {
       rounded-3xl
       border
       border-pink-200
-      bg-white/40
+      bg-pink/40
       backdrop-blur-xl
       shadow-lg
       text-neutral-700
