@@ -14,37 +14,10 @@ const questions = [
   },
 
   {
-    question: "What drink would you like?",
+    question: "What do you want to do today?",
     options: [
-      "🧋 Milk Tea",
-      "☕ Coffee"
-    ],
-    key: "drink"
-  },
-
-  {
-    question: "Where would you want to go?",
-    options: [
-      "🎬 Cinema",
-      "🛍 Mall"
-    ],
-    key: "place"
-  },
-
-  {
-    question: "What would make you happiest?",
-    options: [
-      "🌸 Flowers",
-      "🍫 Chocolates"
-    ],
-    key: "gift"
-  },
-
-  {
-    question: "What should we do together?",
-    options: [
-      "🎮 Play Games",
-      "🍿 Watch Movies"
+      "🎬 Watch Movies",
+      "🎮 Play Games"
     ],
     key: "activity"
   }
@@ -85,7 +58,7 @@ export default function Questions({ onFinish }) {
     setTimeout(() => {
 
 
-      if(current < questions.length - 1){
+      if(current < questions.length - 1) {
 
 
         setCurrent(current + 1);
@@ -96,7 +69,7 @@ export default function Questions({ onFinish }) {
       } else {
 
 
-        localStorage.setItem(
+        sessionStorage.setItem(
           "babiPreferences",
           JSON.stringify(updatedAnswers)
         );
@@ -108,7 +81,7 @@ export default function Questions({ onFinish }) {
       }
 
 
-    },700);
+    }, 700);
 
 
   }
@@ -132,7 +105,6 @@ export default function Questions({ onFinish }) {
       "
 
     >
-
 
 
       <AnimatePresence mode="wait">
@@ -193,7 +165,6 @@ export default function Questions({ onFinish }) {
         >
 
 
-
           <h1
 
             className="
@@ -223,7 +194,8 @@ export default function Questions({ onFinish }) {
             className="
             grid
             grid-cols-2
-            gap-6
+            gap-8
+            justify-items-center
             max-w-md
             mx-auto
             "
@@ -240,7 +212,7 @@ export default function Questions({ onFinish }) {
                 key={option}
 
 
-                onClick={()=>choose(option)}
+                onClick={() => choose(option)}
 
 
                 initial={{
@@ -258,6 +230,7 @@ export default function Questions({ onFinish }) {
                     selected && selected !== option
                     ? 0.35
                     : 1,
+
 
                   scale:
                     selected === option
@@ -291,13 +264,14 @@ export default function Questions({ onFinish }) {
 
 
                 className="
-                aspect-square
+                w-40
+                h-40
                 rounded-3xl
                 border
                 border-pink-200
                 bg-white/40
                 backdrop-blur-xl
-                shadow-lg
+                shadow-xl
                 flex
                 items-center
                 justify-center
@@ -344,7 +318,6 @@ export default function Questions({ onFinish }) {
 
 
       </AnimatePresence>
-
 
 
     </main>
