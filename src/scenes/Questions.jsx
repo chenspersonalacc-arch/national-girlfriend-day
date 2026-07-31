@@ -8,9 +8,7 @@ const questions = [
     question: "What do you want to eat today?",
     options: [
       "🍗 Mang Inasal",
-      "🍩 Dunkin'",
-      "🍔 Jollibee",
-      "🍕 Pizza"
+      "🍩 Dunkin'"
     ],
     key: "food"
   },
@@ -19,42 +17,34 @@ const questions = [
     question: "What drink would you like?",
     options: [
       "🧋 Milk Tea",
-      "☕ Coffee",
-      "🥤 Soft Drink",
-      "🍓 Fruit Drink"
+      "☕ Coffee"
     ],
     key: "drink"
   },
 
   {
-    question: "Where would you like to go?",
+    question: "Where would you want to go?",
     options: [
       "🎬 Cinema",
-      "🛍 Mall",
-      "🌊 Beach",
-      "🏠 Stay at Home"
+      "🛍 Mall"
     ],
     key: "place"
   },
 
   {
-    question: "What gift would make you happiest?",
+    question: "What would make you happiest?",
     options: [
       "🌸 Flowers",
-      "🍫 Chocolates",
-      "🧸 Stuffed Toy",
-      "✉️ Letters"
+      "🍫 Chocolates"
     ],
     key: "gift"
   },
 
   {
-    question: "What would you like to do together?",
+    question: "What should we do together?",
     options: [
       "🎮 Play Games",
-      "🍿 Watch Movies",
-      "💬 Talk for Hours",
-      "🚶 Go on a Walk"
+      "🍿 Watch Movies"
     ],
     key: "activity"
   }
@@ -77,7 +67,7 @@ export default function Questions({ onFinish }) {
   function choose(option) {
 
 
-    const updated = {
+    const updatedAnswers = {
 
       ...answers,
 
@@ -86,7 +76,7 @@ export default function Questions({ onFinish }) {
     };
 
 
-    setAnswers(updated);
+    setAnswers(updatedAnswers);
 
     setSelected(option);
 
@@ -97,18 +87,18 @@ export default function Questions({ onFinish }) {
 
       if(current < questions.length - 1){
 
+
         setCurrent(current + 1);
 
         setSelected("");
 
-      }
 
-      else{
+      } else {
 
 
         localStorage.setItem(
           "babiPreferences",
-          JSON.stringify(updated)
+          JSON.stringify(updatedAnswers)
         );
 
 
@@ -144,34 +134,55 @@ export default function Questions({ onFinish }) {
     >
 
 
+
       <AnimatePresence mode="wait">
 
 
         <motion.div
 
+
           key={current}
 
+
           initial={{
+
             opacity:0,
+
             y:30,
+
             filter:"blur(8px)"
+
           }}
+
 
           animate={{
+
             opacity:1,
+
             y:0,
+
             filter:"blur(0px)"
+
           }}
+
 
           exit={{
+
             opacity:0,
+
             y:-30,
+
             filter:"blur(8px)"
+
           }}
 
+
           transition={{
+
             duration:0.8
+
           }}
+
 
           className="
           w-full
@@ -182,17 +193,20 @@ export default function Questions({ onFinish }) {
         >
 
 
+
           <h1
 
             className="
             text-4xl
             md:text-5xl
             text-neutral-800
-            mb-12
+            mb-14
             "
 
             style={{
+
               fontFamily:"Cormorant Garamond"
+
             }}
 
           >
@@ -208,14 +222,16 @@ export default function Questions({ onFinish }) {
 
             className="
             grid
-            grid-cols-1
-            md:grid-cols-2
-            gap-5
+            grid-cols-2
+            gap-6
+            max-w-md
+            mx-auto
             "
 
           >
 
-            {questions[current].options.map((option)=>(
+
+            {questions[current].options.map((option,index)=>(
 
 
               <motion.button
@@ -224,16 +240,15 @@ export default function Questions({ onFinish }) {
                 key={option}
 
 
-                onClick={() => choose(option)}
+                onClick={()=>choose(option)}
 
 
-                whileHover={{
-                  scale:1.05
-                }}
+                initial={{
 
+                  opacity:0,
 
-                whileTap={{
-                  scale:0.95
+                  scale:0.8
+
                 }}
 
 
@@ -241,25 +256,55 @@ export default function Questions({ onFinish }) {
 
                   opacity:
                     selected && selected !== option
-                    ? 0.4
+                    ? 0.35
+                    : 1,
+
+                  scale:
+                    selected === option
+                    ? 1.08
                     : 1
 
                 }}
 
 
+                transition={{
+
+                  delay:index * 0.15,
+
+                  duration:0.5
+
+                }}
+
+
+                whileHover={{
+
+                  scale:1.05
+
+                }}
+
+
+                whileTap={{
+
+                  scale:0.95
+
+                }}
+
+
                 className="
-                py-5
-                px-6
+                aspect-square
                 rounded-3xl
                 border
                 border-pink-200
                 bg-white/40
                 backdrop-blur-xl
                 shadow-lg
+                flex
+                items-center
+                justify-center
+                text-center
+                p-5
                 text-neutral-700
                 text-lg
-                transition
-                hover:bg-white/70
                 "
 
               >
@@ -276,14 +321,15 @@ export default function Questions({ onFinish }) {
 
 
 
+
           <p
 
             className="
-            mt-10
+            mt-12
             text-sm
             tracking-widest
             text-neutral-500
-            opacity-50
+            opacity-60
             "
 
           >
@@ -293,10 +339,12 @@ export default function Questions({ onFinish }) {
           </p>
 
 
+
         </motion.div>
 
 
       </AnimatePresence>
+
 
 
     </main>
