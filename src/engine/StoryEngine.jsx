@@ -13,9 +13,7 @@ import Flowers from "../scenes/Flowers";
 export default function StoryEngine() {
 
 
-  const [scene, setScene] = useState(
-    sessionStorage.getItem("scene") || "login"
-  );
+const [scene, setScene] = useState("questions");
 
 
 
