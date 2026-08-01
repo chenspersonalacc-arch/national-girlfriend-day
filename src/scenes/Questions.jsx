@@ -1,15 +1,18 @@
-export default function Questions(){
-
-return(
-
-<div className="min-h-screen bg-red-500 flex items-center justify-center">
-
-<h1 className="text-white text-6xl">
-TEST QUESTIONS FILE
-</h1>
-
-</div>
-
-);
-
+export default function Questions() {
+  return (
+    <div
+      style={{
+        height: "100vh",
+        background: "red",
+        color: "white",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        fontSize: "48px",
+        fontWeight: "bold"
+      }}
+    >
+      QUESTIONS IS WORKING
+    </div>
+  );
 }
